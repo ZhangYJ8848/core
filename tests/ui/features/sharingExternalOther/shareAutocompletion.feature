@@ -5,7 +5,12 @@ I want to share files, with minimal typing, to the right people or groups
 So that I can efficiently share my files with other users or groups
 
 	Background:
-		Given regular users exist but are not initialized
+		Given these users exist but are not initialized:
+			|username|password|displayname|email       |
+			|user1   |1234    |User One   |u1@oc.com.np|
+			|user2   |1234    |User Two   |u2@oc.com.np|
+			|user3   |1234    |User Three |u2@oc.com.np|
+			|usergrp |1234    |User Grp   |u@oc.com.np |
 		And a regular user exists
 		And regular groups exist
 		And I am logged in as a regular user
@@ -34,18 +39,18 @@ So that I can efficiently share my files with other users or groups
 	
 	@TestAlsoOnExternalUserBackend
 	Scenario: autocompletion of a pattern that matches regular existing users but also a user with whom the item is already shared (folder)
-		And the folder "simple-folder" is shared with the user "user1"
+		And the folder "simple-folder" is shared with the user "User One"
 		And the share dialog for the folder "simple-folder" is open
 		When I type "user" in the share-with-field
-		Then all users and groups that contain the string "user" in their name should be listed in the autocomplete list except user "user1"
+		Then all users and groups that contain the string "user" in their name should be listed in the autocomplete list except user "User One"
 		And my own name should not be listed in the autocomplete list
 
 	@TestAlsoOnExternalUserBackend
 	Scenario: autocompletion of a pattern that matches regular existing users but also a user whith whom the item is already shared (file)
-		And the file "data.zip" is shared with the user "usergrp"
+		And the file "data.zip" is shared with the user "User Grp"
 		And the share dialog for the file "data.zip" is open
 		When I type "user" in the share-with-field
-		Then all users and groups that contain the string "user" in their name should be listed in the autocomplete list except user "usergrp"
+		Then all users and groups that contain the string "user" in their name should be listed in the autocomplete list except user "User Grp"
 		And my own name should not be listed in the autocomplete list
 	
 	@TestAlsoOnExternalUserBackend
