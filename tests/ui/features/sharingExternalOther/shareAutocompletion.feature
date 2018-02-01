@@ -16,7 +16,7 @@ So that I can efficiently share my files with other users or groups
 		And I am logged in as a regular user
 		And I am on the files page
 	
-	@TestAlsoOnExternalUserBackend
+	@TestAlsoOnExternalUserBackend @skip @user_ldap#175
 	Scenario: autocompletion of regular existing users
 		And the share dialog for the folder "simple-folder" is open
 		When I type "user" in the share-with-field
@@ -37,7 +37,7 @@ So that I can efficiently share my files with other users or groups
 		Then a tooltip with the text "No users or groups found for doesnotexist" should be shown near the share-with-field
 		And the autocomplete list should not be displayed
 	
-	@TestAlsoOnExternalUserBackend
+	@TestAlsoOnExternalUserBackend @skip @user_ldap#175
 	Scenario: autocompletion of a pattern that matches regular existing users but also a user with whom the item is already shared (folder)
 		And the folder "simple-folder" is shared with the user "User One"
 		And the share dialog for the folder "simple-folder" is open
